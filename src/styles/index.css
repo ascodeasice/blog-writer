@@ -115,3 +115,53 @@ button:hover {
 .error {
   color: var(--red);
 }
+
+.postContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-rows: repeat(min-fit, min-content);
+  row-gap: 10px;
+  column-gap: 10px;
+  margin: 20px;
+}
+
+.postBlock {
+  background-color: var(--white);
+  border-radius: 5px;
+  padding: 20px;
+  padding-top: 0px;
+}
+
+.postBlock>.postText {
+  height: 300px;
+  padding: 5px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  white-space: break-spaces;
+  border: 2px solid grey;
+}
+
+.postBlock>.postTitle {
+  display: block;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-block-start: 15px;
+}
+
+.postBlock>.text {
+  height: 300px;
+  padding: 5px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  white-space: break-spaces;
+  border: 2px solid grey;
+  color: var(--black);
+
+}
+
+.postBlock>.title {
+  display: block;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-block-start: 15px;
+}
