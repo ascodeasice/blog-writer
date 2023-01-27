@@ -14,15 +14,27 @@ const EditPage = () => {
     const { jwt } = useJwt();
 
     useEffect(() => {
+        if (postId == "create") {
+            // creating new post
+            setPost(null);
+            return;
+        }
         fetch(`https://blog-api-ascodeasice.up.railway.app/posts/${postId}`)
             .then(res => res.json())
             .then(res => setPost(res));
     }, []);
 
     useEffect(() => {
+        if (postId == "create") {
+            return;
+        }
         fetch(`https://blog-api-ascodeasice.up.railway.app/posts/${postId}/comments`)
             .then(res => res.json())
-            .then(res => setComments(res));
+            .then(res => {
+                // sort by creation time
+                res.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                setComments(res)
+            });
     }, []);
 
     //  redirect user to log in page if token is invalid
@@ -34,7 +46,7 @@ const EditPage = () => {
         return (
             <>
                 <Header />
-                <h1 className="editorTitle">Edit Post</h1>
+                <h1 className="editorTitle">{post ? "Edit Post" : "New Post"}</h1>
                 <PostEditor post={post} />
                 <div className="commentList">
                     {

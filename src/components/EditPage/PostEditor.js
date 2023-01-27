@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Navigate, useParams } from "react-router";
 import { useJwt } from '../../contexts/JwtContext';
+import uniqid from 'uniqid';
 
 
 const PostEditor = ({ post }) => {
@@ -8,6 +9,7 @@ const PostEditor = ({ post }) => {
     const [text, setText] = useState("");
     const [isPublic, setIsPublic] = useState(false);
     const [updated, setUpdated] = useState(false);
+    const [errors, setErrors] = useState([]);
     const { jwt } = useJwt();
     const { postId } = useParams();
 
@@ -33,6 +35,34 @@ const PostEditor = ({ post }) => {
         setIsPublic(event.target.checked);
     }
 
+    const createPost = () => {
+        const formData = {
+            title: title,
+            text: text,
+            author: "63cf8534f3ac5f8a35aab238",
+            isPublic: isPublic ? "on" : "off",
+        };
+
+        fetch(`https://blog-api-ascodeasice.up.railway.app/posts`, {
+            method: "POST",
+            mode: 'cors',
+            headers: {
+                'Authorization': 'Bearer ' + jwt,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+            .then(res => res.json())
+            .then(res => {
+                console.log(res);
+
+                if (Array.isArray(res)) {
+                    setErrors(res);
+                }
+                setUpdated(true);
+            });
+    }
+
     const updatePost = () => {
         const formData = {
             title: title,
@@ -52,10 +82,10 @@ const PostEditor = ({ post }) => {
         })
             .then(res => res.json())
             .then(res => {
-                // returns updated post
-                if (res._id == postId) {
-                    setUpdated(true);
+                if (Array.isArray(res)) {
+                    setErrors(res);
                 }
+                setUpdated(true);
             });
     }
 
@@ -68,7 +98,13 @@ const PostEditor = ({ post }) => {
                     <textarea className="title" placeholder="Title" value={title} onChange={changeTitle} />
                     <textarea className="textInput" placeholder="post text" value={text} onChange={changeText} />
                     <label htmlFor="isPublic"><input onChange={changePublic} id='isPublic' type="checkbox" checked={isPublic} />Public</label>
-                    <button className="submitButton" onClick={updatePost}>Update</button>
+                    <button className="submitButton"
+                        onClick={post ? updatePost : createPost}>{post ? "Update" : "Create"}
+                    </button>
+
+                    <ul className="errorList">
+                        {errors.map(error => <li key={uniqid()} className="error">{error.msg}</li>)}
+                    </ul>
                 </div>
             </div>
         )

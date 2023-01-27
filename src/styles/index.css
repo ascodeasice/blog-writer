@@ -167,6 +167,10 @@ button:hover {
   margin-block-start: 15px;
 }
 
+.postBlock>.time {
+  color: var(--black);
+}
+
 .blue {
   color: var(--blue);
 }
@@ -255,4 +259,14 @@ button:hover {
 
 .commentBlock>.time {
   font-size: 12px;
+}
+
+.newPostButtonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.error {
+  color: var(--red);
 }
