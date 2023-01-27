@@ -13,6 +13,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--black);
+  padding-bottom: 50px;
 }
 
 code {
@@ -189,7 +190,6 @@ button:hover {
   justify-self: center;
   row-gap: 10px;
   min-height: 70vh;
-  margin-bottom: 50px;
 }
 
 .editor>.title {
@@ -216,4 +216,43 @@ button:hover {
 .editorTitle {
   color: var(--white);
   text-align: center;
+}
+
+.commentList {
+  display: grid;
+  grid-auto-rows: min-content;
+  row-gap: 10px;
+  justify-items: center;
+  margin-top: 20px;
+}
+
+.commentBlock {
+  background-color: var(--white);
+  width: max(300px, 60vw);
+  border-radius: 5px;
+  padding: 10px;
+
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  grid-auto-rows: min-content;
+}
+
+.commentBlock>.authorName {
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+.commentBlock>.text {
+  white-space: break-spaces;
+}
+
+.commentBlock>.deleteComment {
+  grid-column: 2/-1;
+  grid-row: 1/4;
+  align-self: center;
+}
+
+.commentBlock>.time {
+  font-size: 12px;
 }

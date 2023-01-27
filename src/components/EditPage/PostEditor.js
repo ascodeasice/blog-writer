@@ -11,7 +11,6 @@ const PostEditor = ({ post }) => {
     const { jwt } = useJwt();
     const { postId } = useParams();
 
-
     useEffect(() => {
         // set info when post is fetched
         if (!post) {
