@@ -126,11 +126,19 @@ button:hover {
   margin: 20px;
 }
 
-.postBlock {
+.postBlockContainer {
   background-color: var(--white);
   border-radius: 5px;
   padding: 20px;
   padding-top: 0px;
+  display: grid;
+  grid-template-rows: 1fr min-content;
+}
+
+.postBlock {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-auto-rows: min-content;
 }
 
 .postBlock>.postText {
@@ -140,6 +148,11 @@ button:hover {
   overflow-y: auto;
   white-space: break-spaces;
   border: 2px solid grey;
+}
+
+.postBlock>p {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .postBlock>.postTitle {

@@ -9,7 +9,7 @@ const CommentBlock = ({ comment }) => {
     const { jwt } = useJwt();
 
     const formatTime = (timeStr) => {
-        return DateTime.fromJSDate(new Date(timeStr)).toFormat("yyyy/MM/dd, hh:mm")
+        return DateTime.fromJSDate(new Date(timeStr)).toFormat("yyyy/MM/dd, HH:mm")
     }
 
     const deleteComment = () => {

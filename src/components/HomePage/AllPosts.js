@@ -8,7 +8,10 @@ const AllPosts = () => {
     useEffect(() => {
         fetch("https://blog-api-ascodeasice.up.railway.app/posts")
             .then(res => res.json())
-            .then(res => setPosts(res));
+            .then(res => {
+                res.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+                setPosts(res);
+            });
     }, []);
 
     return (

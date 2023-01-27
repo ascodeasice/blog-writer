@@ -54,8 +54,6 @@ const PostEditor = ({ post }) => {
         })
             .then(res => res.json())
             .then(res => {
-                console.log(res);
-
                 if (Array.isArray(res)) {
                     setErrors(res);
                 }
