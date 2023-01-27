@@ -165,3 +165,55 @@ button:hover {
   font-size: 1.5rem;
   margin-block-start: 15px;
 }
+
+.blue {
+  color: var(--blue);
+}
+
+.red {
+  color: var(--red);
+}
+
+.editorPage {
+  display: grid;
+}
+
+.editor {
+  background-color: var(--white);
+  display: grid;
+  grid-auto-rows: min-content;
+  justify-items: center;
+  width: max(80vw, 300px);
+  border-radius: 10px;
+  padding: 10px;
+  justify-self: center;
+  row-gap: 10px;
+  min-height: 70vh;
+  margin-bottom: 50px;
+}
+
+.editor>.title {
+  width: 300px;
+  height: 40px;
+  font-size: 30px;
+  padding-left: 15px;
+  outline: none;
+  border: none;
+  background-color: var(--white);
+  font-weight: bold;
+  padding-left: 5px;
+}
+
+.editor>.textInput {
+  line-height: 25px;
+  font-size: 18px;
+  width: max(70vw, 300px);
+  resize: vertical;
+  min-height: 300px;
+  padding-left: 5px;
+}
+
+.editorTitle {
+  color: var(--white);
+  text-align: center;
+}
