@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/blog-writer/static/css/main.286a6253.css",
+    "main.js": "/blog-writer/static/js/main.5e9d8dc8.js",
+    "static/media/github.svg": "/blog-writer/static/media/github.18cf6225ef8efdd410ca86afd6a4817c.svg",
+    "index.html": "/blog-writer/index.html",
+    "main.286a6253.css.map": "/blog-writer/static/css/main.286a6253.css.map",
+    "main.5e9d8dc8.js.map": "/blog-writer/static/js/main.5e9d8dc8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.286a6253.css",
+    "static/js/main.5e9d8dc8.js"
+  ]
+}
