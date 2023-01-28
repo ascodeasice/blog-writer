@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import { Navigate, useParams } from "react-router";
 import { useJwt } from '../../contexts/JwtContext';
 import uniqid from 'uniqid';
-
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import AutoResizeTextarea from "../AutoResizeTextarea";
 
 const PostEditor = ({ post }) => {
     const [title, setTitle] = useState("");
@@ -10,6 +12,7 @@ const PostEditor = ({ post }) => {
     const [isPublic, setIsPublic] = useState(false);
     const [updated, setUpdated] = useState(false);
     const [errors, setErrors] = useState([]);
+    const [isMarkdown, setIsMarkdown] = useState(false);
     const { jwt } = useJwt();
     const { postId } = useParams();
 
@@ -33,6 +36,10 @@ const PostEditor = ({ post }) => {
 
     const changePublic = (event) => {
         setIsPublic(event.target.checked);
+    }
+
+    const switchMarkdown = () => {
+        setIsMarkdown(!isMarkdown);
     }
 
     const createPost = () => {
@@ -93,8 +100,17 @@ const PostEditor = ({ post }) => {
         return (
             <div className="editorPage">
                 <div className="editor">
-                    <textarea className="title" placeholder="Title" value={title} onChange={changeTitle} />
-                    <textarea className="textInput" placeholder="post text" value={text} onChange={changeText} />
+                    <button onClick={switchMarkdown} className="markdownButton">{isMarkdown ? "Edit" : "Preview"}</button>
+                    <AutoResizeTextarea className="title" onChange={changeTitle} value={title} placeholder="title" />
+
+                    {isMarkdown ? <div className="postPreview" onClick={switchMarkdown}><ReactMarkdown remarkPlugins={[[remarkGfm, { singleTilde: false }]]}
+                        className="markdown" >
+                        {text}
+                    </ReactMarkdown>
+                    </div>
+                        : <AutoResizeTextarea id='textTextarea' className="textInput" placeholder="post text" value={text} onChange={changeText} />
+                    }
+
                     <label htmlFor="isPublic"><input onChange={changePublic} id='isPublic' type="checkbox" checked={isPublic} />Public</label>
                     <button className="submitButton"
                         onClick={post ? updatePost : createPost}>{post ? "Update" : "Create"}

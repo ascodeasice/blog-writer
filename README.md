@@ -7,6 +7,7 @@ I have to log in first, then I can edit my posts and visitors' comments
 - Use my blog API ([repo](https://github.com/ascodeasice/blog-api))
 - Use React.js framework
 - Use MongoDB and Express.js for backend
+- Use [react-markdown](https://github.com/remarkjs/react-markdown#use-a-plugin-with-options) for text editor
 # Results
 ## Home Page
 ![](./src/images/home.png)
