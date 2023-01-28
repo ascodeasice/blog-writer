@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { DateTime } from "luxon";
 import { useState } from "react";
 import { useJwt } from "../../contexts/JwtContext";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm'
 
 const PostBlock = ({ post }) => {
     const [deleted, setDeleted] = useState(false);
@@ -36,7 +38,10 @@ const PostBlock = ({ post }) => {
             <div className="postBlockContainer">
                 <Link to={`/posts/${post._id}`} className='postBlock'>
                     <h1 className="title">{post.title}</h1>
-                    <p className="text">{post.text}</p>
+                    <ReactMarkdown remarkPlugins={[[remarkGfm, { singleTilde: false }]]}
+                        className="markdown">
+                        {post.text}
+                    </ReactMarkdown>
                     <p className={post.isPublic ? "blue" : "red"}>{post.isPublic ? "Public" : "Private"}</p>
                     <p className="time">{formatTime(post.updatedAt)}</p>
                 </Link>

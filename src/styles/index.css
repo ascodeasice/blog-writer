@@ -162,7 +162,7 @@ button:hover {
   margin-block-start: 15px;
 }
 
-.postBlock>.text {
+.postBlock>.markdown {
   height: 300px;
   padding: 5px;
   overflow-x: hidden;
@@ -170,7 +170,10 @@ button:hover {
   white-space: break-spaces;
   border: 2px solid grey;
   color: var(--black);
+}
 
+.markdown>* {
+  margin: 0;
 }
 
 .postBlock>.title {
@@ -260,7 +263,7 @@ button:hover {
   margin-top: 5px;
 }
 
-.commentBlock>.text {
+.commentBlock>.markdown {
   white-space: break-spaces;
 }
 
